@@ -1,4 +1,9 @@
-# Ide garbage
+# Rider garbage
 *.idea/
+
+# VScode garbage
+*.vscode
+
+#Builds
 *bin/
 *obj/
