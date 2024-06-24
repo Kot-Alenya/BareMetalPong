@@ -33,3 +33,8 @@ void timer_initialize(uint32_t frequency_ms, timer_callback_t callback)
     set_frequency(frequency_ms);
     interrupts_register_program_handler(0, &callback_handler);
 }
+
+void timer_dispose()
+{
+    interrupts_unregister_program_handler(0);
+}

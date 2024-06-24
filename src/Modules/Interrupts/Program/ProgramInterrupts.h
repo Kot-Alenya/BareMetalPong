@@ -8,6 +8,7 @@ typedef void (*program_interrupt_handler_t) (registers_t r);
 
 extern void program_interrupts_set_data();
 extern void program_interrupts_register_handler(uint32_t intNumber, program_interrupt_handler_t handler);
+extern void program_interrupts_unregister_handler(uint32_t intNumber);
 
 #define _define_prog_int_fun(num) extern void _prog_int##num()
 _define_prog_int_fun(0);

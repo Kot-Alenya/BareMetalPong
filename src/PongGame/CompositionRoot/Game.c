@@ -24,6 +24,6 @@ void Game_Startup()
     GameFactory_CreateStaticData();
     GameFactory_CreateProgressData();
     Game_Start();
-    Game_Exit();
+    
     while(!_isExit) {}
 }

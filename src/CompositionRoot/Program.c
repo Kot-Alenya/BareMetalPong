@@ -32,7 +32,7 @@ void program_main(multiboot_info_t* multiboot_info)
     keyboard_initialize();
     command_line_initialize();
     register_game();
-
+    
     start_game_handler();
 
     while (1) {}

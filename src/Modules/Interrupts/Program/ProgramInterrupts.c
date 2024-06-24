@@ -36,6 +36,11 @@ void program_interrupts_register_handler(uint32_t intNumber, program_interrupt_h
     _handlers[intNumber] = handler;
 }
 
+void program_interrupts_unregister_handler(uint32_t intNumber)
+{
+    _handlers[intNumber] = 0;
+}
+
 void _program_interrupts_common_handler(registers_t registers, uint32_t intNumber)
 {
     if (intNumber >= 8)

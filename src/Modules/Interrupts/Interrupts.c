@@ -21,3 +21,8 @@ void interrupts_register_program_handler(uint32_t intNumber, program_interrupt_h
 {
     program_interrupts_register_handler(intNumber, handler);
 }
+
+void interrupts_unregister_program_handler(uint32_t intNumber)
+{
+    program_interrupts_unregister_handler(intNumber);
+}

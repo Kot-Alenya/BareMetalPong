@@ -29,19 +29,16 @@ static void ClearBuffer()
         _buffer[i] = ' ';
 }
 
-void Screen_Update();
-
 void Screen_Initialize()
 {
     _buffer = memory_allocate(_size.X * _size.Y * sizeof(char));
     ClearBuffer();
-    Screen_Update(); //TODO: remove ?
 }
 
 void Screen_Update()
 {
     for(int i = 0; i < _size.X * _size.Y; i++)
-        monitor_set_char(i, _buffer[i]); //monitor_set_char(i, _buffer[i]);
+        monitor_set_char(_buffer[i], i);
 
     ClearBuffer();
 }
@@ -90,4 +87,5 @@ void Screen_DrawNumber(Int2 position, int number)
 void Screen_Dispose()
 {
     memory_free(_buffer);
+    monitor_clean();
 }

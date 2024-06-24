@@ -11,7 +11,6 @@ static const int PhysicsUpdateTimeMs = 30;
 static const int GraphicsUpdateTimeMs = 15;
 static const float PhysicsUpdateDeltaTime = (float)PhysicsUpdateTimeMs / 1000;
 
-static int _isRuning;
 static const int _timerIntervalMs = 15;
 static int _physicsUpdateCounter = PhysicsUpdateTimeMs;
 static int _graphicsUpdateCounter = GraphicsUpdateTimeMs;
@@ -50,12 +49,11 @@ static void TimerCallback()
 
 void GameUpdater_Initialize()
 {
-    _isRuning = 1;
-
+    TimerCallback();
     timer_initialize(_timerIntervalMs, TimerCallback);
 }
 
 void GameUpdater_Dispose()
 {
-    _isRuning = 0;
+    timer_dispose();
 }

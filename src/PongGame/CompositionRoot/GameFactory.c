@@ -57,13 +57,13 @@ void GameFactory_Create()
     CreateSessionData();
     Screen_Initialize();
     BallView_Initialize();
-    //GameUpdater_Initialize();
+    GameUpdater_Initialize();
 }
 
 void GameFactory_Dispose()
 {
-    Screen_Dispose();
     GameUpdater_Dispose();
+    Screen_Dispose();
     BallView_Dispose();
     Platform_Dispose(GameSessionData.LeftPlatform);
     Platform_Dispose(GameSessionData.RightPlatform);
