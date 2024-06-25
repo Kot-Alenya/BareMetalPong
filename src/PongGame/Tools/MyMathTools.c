@@ -36,7 +36,7 @@ float MyMath_Clamp(float value, float min, float max)
     return value;
 }
 
-double Factorial(int n) 
+static double Factorial(int n) 
 {
     double result = 1.0;
 
@@ -46,7 +46,7 @@ double Factorial(int n)
     return result;
 }
 
-double Power(float base, int exp) 
+static double Power(float base, int exp) 
 {
     double result = 1.0;
 
@@ -56,7 +56,7 @@ double Power(float base, int exp)
     return result;
 }
 
-float sin_or_cos(float x, uint32_t is_sin) 
+static float sin_or_cos(float x, uint32_t is_sin) 
 {
     double sum = 0.0;
     int n = 10; // Количество итераций (чем больше, тем точнее)
