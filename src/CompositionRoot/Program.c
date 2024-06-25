@@ -29,11 +29,14 @@ void program_main(multiboot_info_t* multiboot_info)
     gdt_initialize();
     interrupts_initialize();
     memory_initialize(multiboot_info);
+    
     keyboard_initialize();
+
     command_line_initialize();
     register_game();
-    
-    start_game_handler();
 
-    while (1) {}
+    while (1) 
+    {
+        command_line_update();
+    }
 }

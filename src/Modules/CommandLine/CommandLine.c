@@ -14,6 +14,7 @@ static uint32_t _line_length;
 
 static command_t _commands[10];
 static uint32_t _commands_count;
+static uint32_t _is_handle_command_request;
 
 static void handle_command()
 {
@@ -53,8 +54,7 @@ static void on_change_key_status_handler(keyboard_scancode_t key_code, uint32_t 
     if(key_code == ENTER)
     {
         monitor_push_char('\n');
-        handle_command();
-        _line_length = 0;
+        _is_handle_command_request = 1;
         return;
     }
 
@@ -97,4 +97,14 @@ void command_line_dispose()
 {
     keyboard_unregister_on_change_key_status_handler(on_change_key_status_handler);
     _commands_count = 0;
+}
+
+void command_line_update()
+{
+    if(_is_handle_command_request)
+    {
+        handle_command();
+        _line_length = 0;
+        _is_handle_command_request = 0;
+    }
 }
