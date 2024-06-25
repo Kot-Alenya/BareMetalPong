@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-typedef struct rtc_datetime
+typedef struct datetime
 {
     uint8_t seconds;
     uint8_t minutes;
@@ -11,6 +11,8 @@ typedef struct rtc_datetime
     uint8_t day;
     uint8_t month;
     uint8_t year;
-} rtc_datetime_t;
+} datetime_t;
+
+extern void rtc_datetime_get(datetime_t *datetime); 
 
 #endif

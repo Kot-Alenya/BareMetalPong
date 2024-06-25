@@ -35,41 +35,7 @@ void program_main(multiboot_info_t* multiboot_info)
 
     command_line_initialize();
     register_game();
-/*
-    Random_Initialize();
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-    monitor_push_char('\n');
-    monitor_push_uint32(Random_Next(0, 10));
-*/
 
     while (1) 
-    {
         command_line_update();
-    }
 }

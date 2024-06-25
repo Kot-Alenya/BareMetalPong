@@ -13,7 +13,7 @@ static uint8_t bcd_to_binary(uint8_t bcd)
     return (bcd & 0x0F) + ((bcd / 16) * 10);
 }
 
-void rtc_datetime_get(rtc_datetime_t *datetime) 
+void rtc_datetime_get(datetime_t *datetime) 
 {
     datetime->seconds = bcd_to_binary(read_rtc_register(0x00));
     datetime->minutes = bcd_to_binary(read_rtc_register(0x02));

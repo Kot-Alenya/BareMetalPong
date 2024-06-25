@@ -1,20 +1,21 @@
 #include <stdint.h>
+#include "Datetime.h"
 
-#define _MULTIPLIER 1664525
-#define _INCREMENT 1013904223
-#define _MODULUS 4294967296 // 2^32
-
-static uint32_t _seed = 18723628; //TODO: system sturtup time value!
+static uint32_t _seed;
 
 static uint32_t lcg_random() 
 {
-    _seed = (_MULTIPLIER * _seed + _INCREMENT) % _MODULUS;
+    _seed ^= (_seed << 13);
+    _seed ^= (_seed >> 17);
+    _seed ^= (_seed << 5);
     return _seed;
 }
 
 void Random_Initialize()
 {
-    //srand(time(0));
+    datetime_t datetime;
+    rtc_datetime_get(&datetime);
+    _seed = datetime.hours * datetime.minutes * datetime.seconds;
 }
 
 int Random_Next(int min, int max)
