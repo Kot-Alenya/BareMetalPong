@@ -9,7 +9,7 @@ const int MaxValue = 360;
 void Angel_Set(Angel* angel, int value)
 {
     if(value > MaxValue)
-        angel->_degrees = value - value / MaxValue * MaxValue;
+        angel->_degrees = value - (value / MaxValue) * MaxValue;
     else if(value < MinValue)
         angel->_degrees = value + (value / MaxValue + 1) * MaxValue;
     else

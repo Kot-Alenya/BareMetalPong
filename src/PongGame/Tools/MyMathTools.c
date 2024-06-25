@@ -36,27 +36,36 @@ float MyMath_Clamp(float value, float min, float max)
     return value;
 }
 
-static float MathSinCos(float x, uint32_t is_sin) 
+double Factorial(int n) 
 {
-    while (x > _pi) 
-    {
-        x -= 2 * _pi;
-    }
+    double result = 1.0;
 
-    while (x < -_pi) 
-    {
-        x += 2 * _pi;
-    }
+    for (int i = 1; i <= n; i++) 
+        result *= i;
 
-    float term = x;
-    float sum = x;
-    int n = 1;
+    return result;
+}
 
-    for (int i = 1; i < 4; i++) 
+double Power(float base, int exp) 
+{
+    double result = 1.0;
+
+    for (int i = 0; i < exp; i++) 
+        result *= base;
+
+    return result;
+}
+
+float sin_or_cos(float x, uint32_t is_sin) 
+{
+    double sum = 0.0;
+    int n = 10; // Количество итераций (чем больше, тем точнее)
+
+    for (int i = 0; i < n; i++) 
     {
-        term *= -x * x / (2 * n * (2 * n + is_sin ? 1 : -1));
+        int sign = (i % 2 == 0) ? 1 : -1;
+        double term = sign * (Power(x, 2 * i + is_sin) / Factorial(2 * i + is_sin));
         sum += term;
-        n++;
     }
 
     return sum;
@@ -64,10 +73,10 @@ static float MathSinCos(float x, uint32_t is_sin)
 
 float MyMath_Sin(float x) 
 {
-    return MathSinCos(x, 1);
+    return sin_or_cos(x, 1);
 }
 
 float MyMath_Cos(float x) 
 {
-    return MathSinCos(x, 0);
+    return sin_or_cos(x, 0);
 }
