@@ -14,7 +14,6 @@ typedef struct command
 extern void command_line_initialize();
 extern void command_line_write_list_of_commands();
 extern void command_line_register_command(command_t command);
-extern void command_line_dispose();
 extern void command_line_update();
 
 #endif

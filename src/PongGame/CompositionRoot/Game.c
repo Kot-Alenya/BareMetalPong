@@ -15,7 +15,6 @@ void Game_Restart()
 
 void Game_Exit()
 {
-    GameFactory_Dispose();
     _isExit = 1;
 }
 
@@ -25,5 +24,8 @@ void Game_Startup()
     GameFactory_CreateProgressData();
     Game_Start();
     
+    _isExit = 0;
     while(!_isExit) {}
+
+    GameFactory_Dispose();
 }

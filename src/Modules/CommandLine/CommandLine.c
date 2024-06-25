@@ -74,12 +74,22 @@ void command_line_register_command(command_t command)
     _commands_count++;
 }
 
-void command_line_initialize()
+static void command_line_unmute()
 {
     keyboard_register_on_change_key_status_handler(on_change_key_status_handler);
+}
 
+static void command_line_mute()
+{
+    keyboard_unregister_on_change_key_status_handler(on_change_key_status_handler);
+}
+
+void command_line_initialize()
+{
     for(uint32_t i = 0; i < initial_commands_count; i++)
         command_line_register_command(initial_commands[i]);
+    
+    command_line_unmute();
 }
 
 void command_line_write_list_of_commands()
@@ -93,17 +103,13 @@ void command_line_write_list_of_commands()
     }
 }
 
-void command_line_dispose()
-{
-    keyboard_unregister_on_change_key_status_handler(on_change_key_status_handler);
-    _commands_count = 0;
-}
-
 void command_line_update()
 {
     if(_is_handle_command_request)
     {
+        command_line_mute();
         handle_command();
+        command_line_unmute();
         _line_length = 0;
         _is_handle_command_request = 0;
     }
