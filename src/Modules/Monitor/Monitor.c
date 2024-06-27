@@ -12,7 +12,7 @@ const uint8_t MONITOR_HEIGHT = _MONITOR_HEIGHT;
 const uint8_t MONITOR_WIDTH = _MONITOR_WIDTH;
 
 static uint16_t* _video_memory = (uint16_t*)0xB8000;
-static uint16_t _color_attribute = 0;
+static uint8_t _char_attribute = 0;
 static uint8_t _cursor_x = 0;
 static uint8_t _cursor_y = 0;
 
@@ -25,7 +25,7 @@ static uint16_t get_cursor_position()
 
 static void set_char(uint16_t* writeAddr, char c)
 {
-	*writeAddr = c | _color_attribute;
+	*writeAddr = ((uint16_t)_char_attribute << 8) | (uint8_t)c;
 }
 
 static void set_line_by_char(uint32_t index, char c)
@@ -40,9 +40,9 @@ static void update_cursor_position()
 {
     uint16_t position = get_cursor_position();
     io_out_byte(0x3D4, 14);
-    io_out_byte(0x3D5, (position >> 8) & 0xFF); // Высший байт позиции
+    io_out_byte(0x3D5, (position >> 8) & 0xFF);
     io_out_byte(0x3D4, 15);
-    io_out_byte(0x3D5, position & 0xFF); // Низший байт позиции
+    io_out_byte(0x3D5, position & 0xFF);
 }
 
 static void update_scroll()
@@ -84,8 +84,15 @@ void  monitor_push_char(char c)
 
 static void set_colors(uint8_t backColor, uint8_t charColor)
 {
-	uint8_t attributeuint8_t = (backColor << 4) | (charColor & 0x0F);
-	_color_attribute = attributeuint8_t << 8;
+	_char_attribute |= charColor | (backColor << 4);
+}
+
+static void set_char_blinking_attribute(uint32_t is_blinking)
+{
+	if(is_blinking)
+		_char_attribute |= (1 << 7);
+	else
+		_char_attribute &= ~(1 << 7);
 }
 
 static void clean()
@@ -138,6 +145,7 @@ char* monitor_get_common_buffer()
 void monitor_initialize()
 {
 	set_colors(VGA_COLOR_BLACK, VGA_COLOR_WHITE);
+	set_char_blinking_attribute(0);
 	clean();
 	update_cursor_position();
 }

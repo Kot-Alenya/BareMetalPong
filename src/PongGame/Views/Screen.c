@@ -14,8 +14,8 @@ static char *_buffer;
 
 static void ClearBuffer()
 {
-    //for(int i = 0; i < _size.X * _size.Y; i++)
-    //    _buffer[i] = ' ';
+    for(int i = 0; i < _size.X * _size.Y; i++)
+        _buffer[i] = ' ';
 }
 
 void Screen_Initialize()
