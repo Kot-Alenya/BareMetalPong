@@ -6,7 +6,7 @@ If you decide to write something for bare metal, this project might be useful as
 I must warn you that the code is not documented, although I tried to write it clearly, I hope it won't cause you major problems!<br>
 If you're interested in what the final result looks like, download download the release boot image from [here](https://github.com/potokaalex/BareMetalPong/releases), create a bootable USB drive, or use a virtual machine to boot it up.<br>
 Upon startup, you will be greeted by an unfriendly black screen. Type the command help/? to get a list of available features.<br>
-If you use my project for your own purposes, please include the license file somewhere.<br>
+If you use my project for your own purposes, please include the [license file](LICENSE) somewhere.<br>
 
 ## Requirements
 - Gnu make.
