@@ -32,6 +32,7 @@ extern void monitor_clean();
 
 extern uint32_t monitor_get_cursor_position();
 extern void monitor_set_cursor_position(uint32_t position);
+extern void monitor_set_cursor_blinking(uint32_t is_blinking);
 
 extern void monitor_push_char(char c);
 extern void monitor_push_string(char* c);

@@ -172,3 +172,17 @@ void monitor_set_char(char c, uint32_t position)
 
 	set_char(_video_memory + position, c);
 }
+
+void monitor_set_cursor_blinking(uint32_t is_blinking) 
+{
+    io_out_byte(0x3D4, 0x0A);
+    uint8_t cursor_data = io_in_byte(0x3D5);
+    
+    if(is_blinking)
+        cursor_data &= ~(1 << 5);
+    else
+        cursor_data |= 1 << 5;
+
+    io_out_byte(0x3D4, 0x0A);
+    io_out_byte(0x3D5, cursor_data);
+}

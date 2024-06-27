@@ -12,27 +12,17 @@ static Int2 _size = {.X = 80, .Y = 25};
 static Float2 _scale = {.X= 1, .Y = 1};
 static char *_buffer;
 
-/*
-void SetCursorVisible(HANDLE consoleHandle)
-{
-    CONSOLE_CURSOR_INFO cursorInfo;
-    GetConsoleCursorInfo(consoleHandle, &cursorInfo);
-
-    cursorInfo.bVisible = FALSE;
-    SetConsoleCursorInfo(consoleHandle, &cursorInfo);
-}
-*/
-
 static void ClearBuffer()
 {
-    for(int i = 0; i < _size.X * _size.Y; i++)
-        _buffer[i] = ' ';
+    //for(int i = 0; i < _size.X * _size.Y; i++)
+    //    _buffer[i] = ' ';
 }
 
 void Screen_Initialize()
 {
     _buffer = memory_allocate(_size.X * _size.Y * sizeof(char));
     ClearBuffer();
+    monitor_set_cursor_blinking(0);
 }
 
 void Screen_Update()
@@ -88,4 +78,5 @@ void Screen_Dispose()
 {
     memory_free(_buffer);
     monitor_clean();
+    monitor_set_cursor_blinking(1);
 }

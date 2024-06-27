@@ -18,6 +18,7 @@ static void register_game()
     command_line_register_command(start_game_comand);
 }
 
+//баг-мерцинаие символов!
 void program_main(multiboot_info_t* multiboot_info)
 {
     monitor_initialize();
