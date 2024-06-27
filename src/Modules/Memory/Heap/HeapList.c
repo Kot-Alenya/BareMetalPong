@@ -9,7 +9,7 @@ void heap_list_write_elements()
 {
     for(heap_chunk_t* c = _first_chunk; c != NULL; c = c->next_chunk)
     {
-        string_build(monitor_get_common_buffer(), 1, "addr: %h    size: %h    alloc: %d\n", (uint32_t)c, GET_CHUNK_SIZE(c), c->is_allocated);
+        string_build(monitor_get_common_buffer(), 1, "addr: %h    size: %h    allocated: %d\n", (uint32_t)c, GET_CHUNK_SIZE(c), c->is_allocated);
         monitor_push_string(monitor_get_common_buffer());      
     }
 }

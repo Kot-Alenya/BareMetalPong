@@ -35,5 +35,4 @@ void error_throw(char* mess)
     print_stack_trace();
     
     while(1) {}
-    //TODO: выводит сообщение об ошибке, ждёт нажатие клавиши и перезагружает машину.
 }
